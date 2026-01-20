@@ -1,0 +1,153 @@
+---
+title: Getting Started with Wildlife Studios
+description: Set up your account and perform your first legal search in under 5 minutes to begin leveraging the knowledge base effectively.
+---
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- A valid email address for account verification
+- Access to a modern web browser like Chrome or Firefox
+- Optional: An API key from your Wildlife Studios account for programmatic searches
+
+<Callout kind="info">
+
+Wildlife Studios requires email verification to ensure secure access to legal resources. Complete this step immediately after signup.
+
+</Callout>
+
+## Create Your Account
+
+Follow these steps to set up your Wildlife Studios account.
+
+<Steps>
+  <Step title="Visit the Signup Page" icon="globe">
+    Navigate to `https://dashboard.example.com/signup` and enter your email address and a strong password.
+  </Step>
+  <Step title="Verify Your Email" icon="mail">
+    Check your inbox for a verification email from Wildlife Studios. Click the link to activate your account.
+  </Step>
+  <Step title="Complete Profile Setup" icon="user">
+    Return to the dashboard and add your name and organization details to unlock full knowledge base access.
+  </Step>
+</Steps>
+
+## Log In and Explore the Dashboard
+
+Once verified, log in at `https://dashboard.example.com/login`.
+
+The dashboard provides quick access to key features:
+
+<Columns cols={3}>
+  <Card title="Search Bar" icon="search" href="#perform-search">
+    Conduct instant legal queries across case law and statutes.
+  </Card>
+  <Card title="Recent Searches" icon="history" href="#">
+    Review your past queries and saved results.
+  </Card>
+  <Card title="Resources" icon="book-open" href="/introduction">
+    Browse curated legal guides and templates.
+  </Card>
+</Columns>
+
+## Perform Your First Legal Search
+
+Start with a basic keyword search for "GDPR compliance requirements".
+
+### UI Search
+
+Use the dashboard search bar directly.
+
+### API Search
+
+For programmatic access, use the search endpoint.
+
+<CodeGroup tabs="JavaScript,Python,cURL">
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/search', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      query: 'GDPR compliance requirements',
+      limit: 10
+    })
+  });
+  const results = await response.json();
+  console.log(results);
+  ```
+  ```python
+  import requests
+
+  response = requests.post(
+      'https://api.example.com/v1/search',
+      headers={
+          'Authorization': 'Bearer YOUR_API_KEY',
+          'Content-Type': 'application/json'
+      },
+      json={
+          'query': 'GDPR compliance requirements',
+          'limit': 10
+      }
+  )
+  results = response.json()
+  print(results)
+  ```
+  ```bash
+  curl -X POST https://api.example.com/v1/search \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "query": "GDPR compliance requirements",
+      "limit": 10
+    }'
+  ```
+</CodeGroup>
+
+<Callout kind="success">
+
+Your first search returns relevant case summaries, statutes, and expert analyses. Save results for later reference.
+
+</Callout>
+
+## Access Initial Resources
+
+Explore these starter resources:
+
+<Tabs>
+  <Tab title="Case Law" icon="book">
+    Review landmark GDPR decisions.
+  </Tab>
+  <Tab title="Statutes" icon="file-text">
+    Access EU regulations directly.
+  </Tab>
+  <Tab title="Templates" icon="file">
+    Download contract templates compliant with legal standards.
+  </Tab>
+</Tabs>
+
+<Expandable title="Advanced Search Tips" default-open="false">
+
+Use filters for jurisdiction (e.g., `EU`) and date range (`>2020`) to refine results.
+
+</Expandable>
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Secure your API integrations.
+  </Card>
+  <Card title="Advanced Guides" icon="book-open" href="/introduction">
+    Dive deeper into the knowledge base.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+
+Bookmark `https://dashboard.example.com` and generate your API key from the settings menu to enable automated workflows.
+
+</Callout>

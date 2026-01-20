@@ -1,0 +1,175 @@
+---
+title: Integrations with Wildlife Studios
+description: Connect Wildlife Studios to external tools and services to streamline your legal workflows and enhance productivity.
+---
+
+## Overview
+
+Wildlife Studios provides seamless integrations to connect your legal knowledge base with popular tools. You can link case management software, set up email notifications, export data to word processors, and build custom solutions using API endpoints. These integrations help you automate workflows, stay updated on case changes, and share documents efficiently.
+
+<Callout kind="info">
+  Before starting, ensure you have admin access in Wildlife Studios and generate an `{API_KEY}` from your account settings at `https://dashboard.example.com/settings/api`.
+</Callout>
+
+## Available Integrations
+
+<Columns cols={2}>
+  <Card title="Case Management" icon="database" href="#case-management">
+    Sync cases with Clio or MyCase for unified workflows.
+  </Card>
+  <Card title="Email Notifications" icon="mail" href="#email-notifications">
+    Get real-time alerts via Gmail, Outlook, or custom webhooks.
+  </Card>
+  <Card title="Data Export" icon="download" href="#data-export">
+    Export documents to Microsoft Word or Google Docs.
+  </Card>
+  <Card title="Custom API" icon="code" href="#custom-api">
+    Build bespoke integrations with RESTful endpoints.
+  </Card>
+</Columns>
+
+## Case Management Software
+
+Link Wildlife Studios to tools like Clio for automatic case syncing.
+
+<Steps>
+  <Step title="Generate API Key" icon="key">
+    Navigate to `https://dashboard.example.com/settings/api` and create a new key.
+  </Step>
+  <Step title="Configure in Clio" icon="settings">
+    In Clio, go to Integrations > Wildlife Studios and paste your `{API_KEY}`.
+  </Step>
+  <Step title="Sync Cases" icon="refresh-cw">
+    Select cases to sync. Changes in Wildlife Studios update Clio in real-time.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Test the connection with a single case before enabling full sync.
+</Callout>
+
+## Email Notifications
+
+Set up notifications for case updates across providers.
+
+<Tabs>
+  <Tab title="Gmail" icon="mail">
+    Use Google Apps Script to poll the Wildlife Studios API.
+
+````javascript
+const API_KEY = 'YOUR_API_KEY';
+const url = 'https://api.example.com/v1/cases/updates';
+
+function checkUpdates() {
+  const response = UrlFetchApp.fetch(url, {
+    headers: { 'Authorization': `Bearer ${API_KEY}` }
+  });
+  // Send email if updates found
+  MailApp.sendEmail('user@gmail.com', 'Case Update', response.getContentText());
+}
+````
+
+  </Tab>
+  <Tab title="Outlook" icon="microsoft">
+    Configure via Microsoft Power Automate flow.
+
+````json
+{
+  "trigger": "When HTTP request received",
+  "action": "HTTP GET https://api.example.com/v1/notifications",
+  "headers": { "Authorization": "Bearer YOUR_API_KEY" }
+}
+````
+
+  </Tab>
+</Tabs>
+
+## Data Export
+
+Export legal documents to word processors.
+
+<CodeGroup tabs="Word,Google Docs">
+  ```javascript
+  // Node.js example for Microsoft Word (.docx)
+  const fs = require('fs');
+  const axios = require('axios');
+
+  async function exportToWord(caseId) {
+    const response = await axios.get(`https://api.example.com/v1/cases/${caseId}/export?format=docx`, {
+      headers: { 'Authorization': 'Bearer YOUR_API_KEY' },
+      responseType: 'stream'
+    });
+    response.data.pipe(fs.createWriteStream('case.docx'));
+  }
+  ```
+  ```javascript
+  // Google Docs via API
+  async function exportToGoogle(caseId) {
+    const response = await fetch(`https://api.example.com/v1/cases/${caseId}/export?format=doc`, {
+      headers: { 'Authorization': 'Bearer YOUR_API_KEY' }
+    });
+    const blob = await response.blob();
+    // Upload to Google Drive using Drive API
+    gapi.client.drive.files.create({
+      resource: { name: 'case.doc' },
+      media: { body: blob }
+    });
+  }
+  ```
+</CodeGroup>
+
+## Custom API Endpoints
+
+Developers can access custom endpoints for advanced integrations.
+
+<ParamField path="caseId" param-type="string" required="true">
+  Unique case identifier.
+</ParamField>
+
+<ParamField query="format" param-type="string" required="false">
+  Export format: `docx`, `pdf`, or `html`.
+</ParamField>
+
+<Request tabs="cURL,JavaScript">
+  ```bash
+  curl -X GET "https://api.example.com/v1/cases/{caseId}/export?format=docx" \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/cases/123/export?format=docx', {
+    headers: { 'Authorization': 'Bearer YOUR_API_KEY' }
+  });
+  const data = await response.blob();
+  ```
+</Request>
+
+<Response tabs="200,400">
+  ```json
+  {
+    "success": true,
+    "downloadUrl": "https://api.example.com/downloads/case-123.docx",
+    "expiresAt": "2024-12-31T23:59:59Z"
+  }
+  ```
+
+  ```json
+  {
+    "error": "Invalid caseId",
+    "code": 400
+  }
+  ```
+</Response>
+
+<Expandable title="Advanced Webhook Setup" default-open="false">
+  Register webhooks for real-time events.
+
+````javascript
+// POST to https://api.example.com/v1/webhooks
+{
+  "url": "https://your-webhook-url.com/wildlife",
+  "events": ["case.updated", "document.added"],
+  "secret": "YOUR_WEBHOOK_SECRET"
+}
+````
+
+</Expandable>

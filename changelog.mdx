@@ -1,0 +1,135 @@
+---
+title: Changelog
+description: Review the version history of Wildlife Studios to stay informed about new features, improvements, and resolved issues.
+---
+
+## Recent Changes
+
+<Callout kind="info">
+  Check this changelog regularly to track enhancements in Wildlife Studios, your legal knowledge base. Subscribe to our RSS feed or GitHub notifications for instant updates.
+</Callout>
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+  ## New Features
+
+  - Added advanced jurisdiction filters to case law search, enabling you to narrow results by country, state, or court level.
+  - Introduced document collaboration tools, allowing real-time annotations on legal briefs.
+
+  ## Improvements
+
+  - Enhanced search performance by `>40%` for large document libraries.
+  - Updated UI with better mobile responsiveness for on-the-go case reviews.
+
+  ## Bug Fixes
+
+  - Fixed citation export issues in APA and Bluebook formats.
+  - Resolved intermittent failures in webhook notifications for document updates.
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+  ## New Features
+
+  - Integrated compliance checklist generator for GDPR and CCPA regulations.
+  - Added API endpoints for bulk document metadata extraction.
+
+  ## Improvements
+
+  - Streamlined user dashboard with customizable widgets for recent cases and alerts.
+
+  ## Bug Fixes
+
+  - Corrected search indexing delays after document uploads.
+  - Patched authentication token refresh logic to prevent session timeouts.
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature", "breaking"]}>
+  ## New Features
+
+  - Core legal search engine with AI-powered relevance ranking.
+  - Secure document upload and version history tracking.
+  - Basic user authentication via OAuth.
+
+  ## Breaking Changes
+
+  - Migrated to new API v2 structure—update your integrations to `https://api.example.com/v2`.
+
+  ## Bug Fixes
+
+  - Initial stability improvements for high-volume searches.
+</Update>
+
+## Version Summary
+
+| Version | Release Date | Key Tags          | Highlights                          |
+|---------|--------------|-------------------|-------------------------------------|
+| v1.2.0  | 2024-10-15  | feature, improvement | Jurisdiction filters, collaboration |
+| v1.1.0  | 2024-09-20  | feature, bugfix   | Compliance tools, API expansions    |
+| v1.0.0  | 2024-08-10  | feature, breaking | Initial release, core search engine |
+
+## Upcoming Changes
+
+<Expandable title="Preview v1.3.0 (Expected November 2024)" default-open="false">
+  Wildlife Studios prepares exciting updates for legal professionals:
+
+  - AI contract review assistant with risk scoring.
+  - Native integrations with Google Workspace and Microsoft 365.
+  - Expanded international case law coverage.
+
+  <Callout kind="tip">
+    Provide feedback via our GitHub discussions to influence priorities.
+  </Callout>
+</Expandable>
+
+## Upgrade Instructions
+
+Follow these steps to upgrade Wildlife Studios seamlessly:
+
+<Steps>
+  <Step title="Backup Data" icon="database">
+    Export your documents and settings.
+
+````bash
+curl -X POST https://api.example.com/v1/export \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -d '{"format": "zip"}'
+````
+  </Step>
+
+  <Step title="Update SDK" icon="package">
+    Install the latest client library.
+
+    <CodeGroup tabs="JavaScript,Python">
+````javascript
+npm install wildlife-studios@1.2.0
+````
+
+````python
+pip install wildlife-studios==1.2.0
+````
+    </CodeGroup>
+  </Step>
+
+  <Step title="Restart Services" icon="refresh-cw">
+    Redeploy your application to apply changes.
+  </Step>
+</Steps>
+
+## Quick Links
+
+<Columns cols={2}>
+  <Card title="GitHub Repository" icon="github" href="https://github.com/wildlife-studios/legal-kb" target="_blank">
+    View full release notes and source code.
+  </Card>
+
+  <Card title="API Reference" icon="code" href="/authentication">
+    Update your API calls for v1.2.0 compatibility.
+  </Card>
+
+  <Card title="Support Forum" icon="help-circle" href="https://forum.example.com" target="_blank">
+    Discuss changes and report issues.
+  </Card>
+
+  <Card title="RSS Feed" icon="rss" href="https://feeds.example.com/changelog">
+    Subscribe for automatic notifications.
+  </Card>
+</Columns>
