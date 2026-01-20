@@ -25,6 +25,11 @@
                 "icon": "home"
               },
               {
+                "title": "Legal Product",
+                "path": "legal-product",
+                "icon": "gamepad2"
+              },
+              {
                 "title": "Quickstart",
                 "path": "quickstart",
                 "icon": "zap"
